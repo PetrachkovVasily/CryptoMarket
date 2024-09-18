@@ -1,19 +1,31 @@
+import { useNavigate } from "react-router";
 import Button from "../Button";
+import CoinName from "../CoinName";
 import { TableRowProps } from "./configs";
 
-function TableRow({ ...props }: TableRowProps) {
+function TableRow({ coin }: TableRowProps) {
+  const navigate = useNavigate();
+
+  function toCoinPage() {
+    navigate(coin.id);
+  }
   return (
-    <tr className="border-#EFF2F5 h-[64px] w-[100%] max-w-[1440px] cursor-pointer border-b-[2px] text-left font-medium hover:bg-[#EFF2F5]">
+    <tr
+      onClick={toCoinPage}
+      className="border-#EFF2F5 h-[64px] w-[100%] max-w-[1440px] cursor-pointer border-b-[2px] text-left font-medium hover:bg-[#EFF2F5]"
+    >
       <td className="flex h-[64px] w-[56px] items-center justify-center">
         <Button className="w-[56px] hover:bg-[#A6B0C3]" variant={"tertiary"}>
           Add
         </Button>
       </td>
-      <td className="w-[30px]">{props.index}</td>
-      <td className="ml-[12px] w-[54px]">{props.name}</td>
-      <td className="w-[54px]">${props.price}</td>
-      <td className="ml-[12px] w-[136px]">${props.marketCap}</td>
-      <td className="w-[42px]">{props.change24}%</td>
+      <td className="w-[30px]">{coin.rank}</td>
+      <td className="ml-[12px] w-[54px]">
+        <CoinName name={coin.name} symbol={coin.symbol} />
+      </td>
+      <td className="w-[54px]">${coin.priceUsd}</td>
+      <td className="ml-[12px] w-[136px]">${coin.marketCapUsd}</td>
+      <td className="w-[42px]">{coin.changePercent24Hr}%</td>
     </tr>
   );
 }

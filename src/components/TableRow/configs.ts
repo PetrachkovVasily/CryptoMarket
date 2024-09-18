@@ -1,7 +1,5 @@
+import { cryptoCoin } from "../../utils/interfaces/cryptoInterfaces";
+
 export type TableRowProps = {
-  index: number;
-  name: string;
-  price: number;
-  marketCap: string;
-  change24: number;
+  coin: cryptoCoin;
 };

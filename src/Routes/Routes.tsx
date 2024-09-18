@@ -10,7 +10,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "", element: <HomePage /> },
-      { path: "/coin", element: <CoinPage /> },
+      { path: ":id", element: <CoinPage /> },
     ],
   },
 ]);

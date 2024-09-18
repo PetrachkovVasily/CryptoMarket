@@ -1,6 +1,6 @@
 import { Outlet } from "react-router";
 import Header from "./components/Header";
-import React from "react";
+import { cryptoAPI } from "./services/cryptoService";
 
 function App() {
   return (
