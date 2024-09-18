@@ -9,7 +9,7 @@ function TableRow({ ...props }: TableRowProps) {
           Add
         </Button>
       </td>
-      <td>{props.index}</td>
+      <td className="w-[30px]">{props.index}</td>
       <td className="ml-[12px] w-[54px]">{props.name}</td>
       <td className="w-[54px]">${props.price}</td>
       <td className="ml-[12px] w-[136px]">${props.marketCap}</td>
