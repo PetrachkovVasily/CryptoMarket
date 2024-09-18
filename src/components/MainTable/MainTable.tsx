@@ -5,10 +5,8 @@ import TableRow from "../TableRow/TableRow";
 function MainTable() {
   const { data: coins } = cryptoAPI.useFetchAllCoinsQuery(1);
 
-  console.log(coins?.data);
-
   return (
-    <table className="w-[100%] max-w-[1440px] table-auto text-[14px]">
+    <table className="w-[100%] max-w-[1440px] table-auto text-[12px] sm:text-[14px]">
       <TableHead />
       <tbody>
         {coins ? (

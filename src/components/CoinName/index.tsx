@@ -2,7 +2,7 @@ import { CoinNameProps } from "./config";
 
 function CoinName({ name, symbol }: CoinNameProps) {
   return (
-    <div className="flex items-center">
+    <div className="flex w-[90px] items-center">
       <img
         className="mr-2 h-[24px] w-[24px]"
         src={`https://assets.coincap.io/assets/icons/${symbol.toLowerCase()}@2x.png`}

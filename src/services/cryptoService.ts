@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { pageCoins } from "../utils/interfaces/cryptoInterfaces";
+import { pageCoins, singleCoin } from "../utils/interfaces/cryptoInterfaces";
 
 export const cryptoAPI = createApi({
   reducerPath: "cryptoApi",
@@ -9,6 +9,11 @@ export const cryptoAPI = createApi({
       query: () => ({
         url: "",
         params: {},
+      }),
+    }),
+    fetchSingleCoin: build.query<singleCoin, string | undefined>({
+      query: (id: string | undefined) => ({
+        url: `/${id}`,
       }),
     }),
   }),

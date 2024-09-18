@@ -20,12 +20,14 @@ function TableRow({ coin }: TableRowProps) {
         </Button>
       </td>
       <td className="w-[30px]">{coin.rank}</td>
-      <td className="ml-[12px] w-[54px]">
+      <td className="ml-[4px] w-[75px]">
         <CoinName name={coin.name} symbol={coin.symbol} />
       </td>
-      <td className="w-[54px]">${coin.priceUsd}</td>
-      <td className="ml-[12px] w-[136px]">${coin.marketCapUsd}</td>
-      <td className="w-[42px]">{coin.changePercent24Hr}%</td>
+      <td className="ml-[4px] w-[54px]">${Number(coin.priceUsd).toFixed(2)}</td>
+      <td className="w-[42px]">{Number(coin.changePercent24Hr).toFixed(2)}%</td>
+      <td className="ml-[12px] w-[136px]">
+        ${Number(coin.marketCapUsd).toFixed(2)}
+      </td>
     </tr>
   );
 }
