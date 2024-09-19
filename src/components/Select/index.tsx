@@ -1,12 +1,10 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { cryptoAPI } from "../../services/cryptoService";
+import { useAppDispatch } from "../../hooks/redux";
 import { coinSlice } from "../../store/reducers/CoinSlice";
 
 function Select() {
   const dispatch = useAppDispatch();
-  function handleSelect() {
-    dispatch(coinSlice.actions.sortData(""));
+  function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch(coinSlice.actions.sortData(event.target.value));
   }
 
   return (
@@ -15,9 +13,9 @@ function Select() {
       name="filters"
       className="h-[38px] w-[100%] max-w-[220px] cursor-pointer rounded-[5px] border border-gray-400 px-[8px] text-[16px] outline-gray-400 hover:bg-[#EFF2F5]"
     >
-      <option value="value1">1</option>
-      <option value="value2">2</option>
-      <option value="value3">3</option>
+      <option value="priceUsd">Price</option>
+      <option value="marketCapUsd">Market cap</option>
+      <option value="changePercent24Hr">24h %</option>
     </select>
   );
 }

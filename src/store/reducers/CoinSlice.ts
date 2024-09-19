@@ -5,6 +5,11 @@ const initialState: pageCoins = {
   data: [],
 };
 
+function byField(fieldName: string) {
+  return (a: { [x: string]: string }, b: { [x: string]: string }) =>
+    a[fieldName] > b[fieldName] ? 1 : -1;
+}
+
 export const coinSlice = createSlice({
   name: "coins",
   initialState,
@@ -13,8 +18,7 @@ export const coinSlice = createSlice({
       state.data = action.payload.data;
     },
     sortData(state, action: PayloadAction<string>) {
-      console.log("as");
-      state.data = state.data.sort();
+      state.data = state.data.sort(byField(action.payload));
     },
   },
 });
