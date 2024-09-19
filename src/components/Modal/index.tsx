@@ -48,8 +48,8 @@ const modalVariants = cva(
   {
     variants: {
       variant: {
-        briefcase: "min-w-[300px] w-[50%] ",
-        add: "max-h-[200px] max-w-[350px]",
+        briefcase: "min-w-[380px] w-[50%] max-w-[700px]",
+        add: "max-h-[200px] max-w-[350px] flex h-[120px] w-[370px] flex-col items-center gap-[20px]",
       },
       size: {
         neutral: "",

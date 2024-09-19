@@ -28,7 +28,6 @@ function MainTable() {
         setActive={setModalActive}
         variant={"add"}
         size={"neutral"}
-        className="flex h-[120px] w-[370px] flex-col items-center gap-[20px]"
       >
         <h3 className="font-bold">
           Add {coins.currentCoin?.name} to briefcase

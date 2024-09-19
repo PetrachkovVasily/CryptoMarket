@@ -1,20 +1,50 @@
-import { useParams } from "react-router";
+import { redirect, useParams } from "react-router";
 import Button from "../components/Button/index.tsx";
 import CoinChart from "../components/CoinChart/index.tsx";
 import CoinParams from "../components/CoinParams.tsx";
 import CoinTitle from "../components/CoinTitle";
 import { cryptoAPI } from "../services/cryptoService.ts";
+import { useState } from "react";
+import { coinSlice } from "../store/reducers/CoinSlice.ts";
+import { useAppDispatch } from "../hooks/redux.ts";
+import Modal from "../components/Modal/index.tsx";
+import Input from "../components/Input/index.tsx";
+import { Link } from "react-router-dom";
 
 function CoinPage() {
   const params = useParams();
+  const [modalActive, setModalActive] = useState(false);
+  const dispatch = useAppDispatch();
 
   const { data: coin } = cryptoAPI.useFetchSingleCoinQuery(params.id);
+
+  function showModal(event: { stopPropagation: () => void }) {
+    event.stopPropagation();
+    setModalActive(true);
+    dispatch(coinSlice.actions.setCurrent(coin?.data));
+  }
 
   return (
     <main className="flex h-[100%] w-screen min-w-[390px] justify-center p-[24px]">
       <div className="flex h-[100%] w-[100%] max-w-[1440px] flex-col gap-[12px] text-[16px]">
+        <Modal
+          isActive={modalActive}
+          setActive={setModalActive}
+          variant={"add"}
+          size={"neutral"}
+        >
+          <h3 className="font-bold">Add {coin?.data.name} to briefcase</h3>
+          <div className="flex items-center">
+            <Input
+              className="h-[42px]"
+              variant={"secondary"}
+              placeholder="Add coin"
+            />
+            <Button variant={"secondary"}>Add</Button>
+          </div>
+        </Modal>
         <Button className="w-fit px-2 hover:bg-[#A6B0C3]" variant={"tertiary"}>
-          Return to main page
+          <Link to={"/"}>Return to main page</Link>
         </Button>
         {coin ? (
           <>
@@ -26,7 +56,11 @@ function CoinPage() {
                   price={Number(coin.data.priceUsd).toFixed(2)}
                   change24h={Number(coin.data.changePercent24Hr).toFixed(2)}
                 />
-                <Button className="font-medium" variant={"secondary"}>
+                <Button
+                  onClick={showModal}
+                  className="font-medium"
+                  variant={"secondary"}
+                >
                   Add
                 </Button>
               </div>

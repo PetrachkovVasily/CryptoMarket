@@ -3,6 +3,8 @@ import Button from "../Button";
 import Modal from "../Modal";
 import SearchBar from "../SearchBar";
 import TopList from "../TopList";
+import BriefModal from "../BriefModal";
+import BriefCost from "../BriefCost";
 
 function Header() {
   const [modalActive, setModalActive] = useState(false);
@@ -14,9 +16,7 @@ function Header() {
         <div className="flex flex-col-reverse gap-2 md:flex-row md:items-center md:gap-[16px]">
           <SearchBar />
           <Button onClick={() => setModalActive(true)}>
-            <pre>
-              134,32 <span>USD</span> +2,38 <span>(1,80 %)</span>
-            </pre>
+            <BriefCost />
           </Button>
         </div>
       </div>
@@ -26,7 +26,7 @@ function Header() {
         variant={"briefcase"}
         size={"neutral"}
       >
-        qwqw
+        <BriefModal />
       </Modal>
     </header>
   );

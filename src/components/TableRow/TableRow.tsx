@@ -2,7 +2,7 @@ import { useNavigate } from "react-router";
 import Button from "../Button";
 import CoinName from "../CoinName";
 import { TableRowProps } from "./configs";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { useAppDispatch } from "../../hooks/redux";
 import { coinSlice } from "../../store/reducers/CoinSlice";
 
 function TableRow({ coin, setModalActive }: TableRowProps) {
