@@ -3,6 +3,7 @@ import { cryptoCoin } from "../../utils/interfaces/cryptoInterfaces";
 
 const initialState: briefCoins = {
   data: [],
+  dataBrief: [],
 };
 
 export type myCoin = {
@@ -12,6 +13,7 @@ export type myCoin = {
 
 export type briefCoins = {
   data: myCoin[];
+  dataBrief: cryptoCoin[];
 };
 
 export const userSlice = createSlice({
@@ -40,6 +42,14 @@ export const userSlice = createSlice({
       } else {
         state.data[isBrief].amount -= action.payload.amount;
       }
+    },
+
+    setAPICoinData(state, action: PayloadAction<cryptoCoin>) {
+      console.log(state.dataBrief);
+      console.log(action.payload);
+
+      state.dataBrief.push(action.payload);
+      //state.dataAPI.push(action.payload);
     },
   },
 });

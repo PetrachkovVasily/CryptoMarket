@@ -1,4 +1,4 @@
-import { redirect, useParams } from "react-router";
+import { useParams } from "react-router";
 import Button from "../components/Button/index.tsx";
 import CoinChart from "../components/CoinChart/index.tsx";
 import CoinParams from "../components/CoinParams.tsx";

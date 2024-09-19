@@ -31,6 +31,7 @@ function MainTable() {
       }),
     );
 
+    setAmount(0);
     setModalActive(false);
   }
 
@@ -47,6 +48,7 @@ function MainTable() {
         </h3>
         <div className="flex items-center">
           <Input
+            value={amount.toString()}
             onChange={(e) => setAmount(+e.target.value)}
             className="h-[42px]"
             variant={"secondary"}
