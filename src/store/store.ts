@@ -18,7 +18,7 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "root",
   storage,
-  blacklist: [cryptoAPI.reducerPath, "coinReducer", "userReducer"],
+  blacklist: [cryptoAPI.reducerPath, "coinReducer"],
 };
 
 const rootReducer = combineReducers({
