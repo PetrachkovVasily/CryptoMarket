@@ -10,8 +10,6 @@ function CoinPage() {
 
   const { data: coin } = cryptoAPI.useFetchSingleCoinQuery(params.id);
 
-  console.log(coin);
-
   return (
     <main className="flex h-[100%] w-screen min-w-[390px] justify-center p-[24px]">
       <div className="flex h-[100%] w-[100%] max-w-[1440px] flex-col gap-[12px] text-[16px]">
