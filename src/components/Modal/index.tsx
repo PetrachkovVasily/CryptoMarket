@@ -32,13 +32,13 @@ export default function Modal({
       }
       onClick={(e) => closeModal(e)}
     >
-      <main
+      <div
         className={cn(modalVariants({ variant, size, className }))}
         onClick={(e) => e.stopPropagation()}
         {...props}
       >
         {children}
-      </main>
+      </div>
     </div>
   );
 }

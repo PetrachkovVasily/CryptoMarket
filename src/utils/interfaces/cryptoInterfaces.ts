@@ -12,6 +12,7 @@ export type cryptoCoin = {
 
 export type pageCoins = {
   data: cryptoCoin[];
+  currentCoin: undefined | cryptoCoin;
 };
 
 export type singleCoin = {

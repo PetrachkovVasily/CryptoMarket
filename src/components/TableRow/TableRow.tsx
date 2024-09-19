@@ -2,12 +2,21 @@ import { useNavigate } from "react-router";
 import Button from "../Button";
 import CoinName from "../CoinName";
 import { TableRowProps } from "./configs";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { coinSlice } from "../../store/reducers/CoinSlice";
 
-function TableRow({ coin }: TableRowProps) {
+function TableRow({ coin, setModalActive }: TableRowProps) {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   function toCoinPage() {
     navigate(coin.id);
+  }
+
+  function showModal(event: { stopPropagation: () => void }) {
+    event.stopPropagation();
+    setModalActive(true);
+    dispatch(coinSlice.actions.setCurrent(coin));
   }
   return (
     <tr
@@ -15,7 +24,11 @@ function TableRow({ coin }: TableRowProps) {
       className="border-#EFF2F5 h-[64px] w-[100%] max-w-[1440px] cursor-pointer border-b-[2px] text-left font-medium hover:bg-[#EFF2F5]"
     >
       <td className="flex h-[64px] w-[56px] items-center justify-center">
-        <Button className="w-[56px] hover:bg-[#A6B0C3]" variant={"tertiary"}>
+        <Button
+          onClick={showModal}
+          className="w-[56px] hover:bg-[#A6B0C3]"
+          variant={"tertiary"}
+        >
           Add
         </Button>
       </td>

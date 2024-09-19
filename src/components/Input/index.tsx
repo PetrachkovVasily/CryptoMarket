@@ -14,15 +14,17 @@ function Input({ className, variant, ...props }: InputProps) {
 
 export default Input;
 
-const inputVariants = cva("rounded-[5px]", {
-  variants: {
-    variant: {
-      primary:
-        "text h-[38px] w-[100%] max-w-[220px] text-[#A6B0C3] bg-transparent outline-none",
-      secondary: "",
+const inputVariants = cva(
+  "rounded-[5px] text h-[38px] w-[100%] max-w-[220px] ",
+  {
+    variants: {
+      variant: {
+        primary: "bg-transparent outline-none",
+        secondary: "rounded-[5px] border-[1px] pl-[8px] border-gray-400",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
     },
   },
-  defaultVariants: {
-    variant: "primary",
-  },
-});
+);

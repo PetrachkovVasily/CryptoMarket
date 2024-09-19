@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { pageCoins } from "../../utils/interfaces/cryptoInterfaces";
+import { cryptoCoin, pageCoins } from "../../utils/interfaces/cryptoInterfaces";
 
 const initialState: pageCoins = {
   data: [],
+  currentCoin: undefined,
 };
 
 function byField(fieldName: string) {
@@ -19,6 +20,9 @@ export const coinSlice = createSlice({
     },
     sortData(state, action: PayloadAction<string>) {
       state.data = state.data.sort(byField(action.payload));
+    },
+    setCurrent(state, action: PayloadAction<undefined | cryptoCoin>) {
+      state.currentCoin = action.payload;
     },
   },
 });
