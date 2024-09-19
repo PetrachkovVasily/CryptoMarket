@@ -29,8 +29,6 @@ export const userSlice = createSlice({
       }
     },
     removeCoin(state, action: PayloadAction<myCoin>) {
-      console.log(action.payload.amount);
-
       const isBrief = state.data.findIndex(
         (n) => n.coin?.id === action.payload.coin?.id,
       );
