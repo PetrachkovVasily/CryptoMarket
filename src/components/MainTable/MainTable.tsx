@@ -7,11 +7,14 @@ import TableRow from "../TableRow/TableRow";
 import Modal from "../Modal";
 import Input from "../Input";
 import Button from "../Button";
+import { userSlice } from "../../store/reducers/userSlice";
 
 function MainTable() {
   const { data: coinsList } = cryptoAPI.useFetchAllCoinsQuery(100);
   const dispatch = useAppDispatch();
   const coins = useAppSelector((state) => state.coinReducer);
+  const user = useAppSelector((state) => state.userReducer);
+  const [amount, setAmount] = useState<number>(0);
 
   const [modalActive, setModalActive] = useState(false);
 
@@ -20,6 +23,17 @@ function MainTable() {
       dispatch(coinSlice.actions.setData(coinsList));
     }
   }, [coinsList]);
+
+  function addToBrief() {
+    dispatch(
+      userSlice.actions.addCoin({
+        coin: coins.currentCoin,
+        amount: amount,
+      }),
+    );
+
+    setModalActive(false);
+  }
 
   return (
     <>
@@ -34,11 +48,15 @@ function MainTable() {
         </h3>
         <div className="flex items-center">
           <Input
+            onChange={(e) => setAmount(+e.target.value)}
             className="h-[42px]"
             variant={"secondary"}
             placeholder="Add coin"
+            type="number"
           />
-          <Button variant={"secondary"}>Add</Button>
+          <Button onClick={addToBrief} variant={"secondary"}>
+            Add
+          </Button>
         </div>
       </Modal>
       <table className="w-[100%] max-w-[1440px] table-auto text-[12px] sm:text-[14px]">

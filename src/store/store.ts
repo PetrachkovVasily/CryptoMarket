@@ -2,9 +2,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { cryptoAPI } from "../services/cryptoService";
 import coinReducer from "./reducers/CoinSlice";
+import userReducer from "./reducers/userSlice";
 
 const rootReducer = combineReducers({
   coinReducer,
+  userReducer,
   [cryptoAPI.reducerPath]: cryptoAPI.reducer,
 });
 
