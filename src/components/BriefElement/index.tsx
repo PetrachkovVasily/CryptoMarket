@@ -22,6 +22,9 @@ function BriefElement({ coin }: BriefElementProps) {
   }, [coinBrief]);
 
   function removeFromBrief() {
+    const isBrief = user.data.findIndex(
+      (item) => item.coin?.id == coin.coin?.id,
+    );
     dispatch(
       userSlice.actions.removeCoin({
         coin: user.data[
@@ -30,9 +33,10 @@ function BriefElement({ coin }: BriefElementProps) {
         amount: amount,
       }),
     );
+    if (user.data[isBrief].amount <= coin.amount && coin.coin) {
+      dispatch(userSlice.actions.removeAPICoinData(coin.coin));
+    }
     setAmount(0);
-
-    console.log(user.dataBrief);
   }
 
   return (

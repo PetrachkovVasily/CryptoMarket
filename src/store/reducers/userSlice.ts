@@ -45,11 +45,13 @@ export const userSlice = createSlice({
     },
 
     setAPICoinData(state, action: PayloadAction<cryptoCoin>) {
-      console.log(state.dataBrief);
-      console.log(action.payload);
-
       state.dataBrief.push(action.payload);
-      //state.dataAPI.push(action.payload);
+    },
+    removeAPICoinData(state, action: PayloadAction<cryptoCoin>) {
+      state.dataBrief.splice(
+        state.dataBrief.findIndex((n) => n.id === action.payload.id),
+        1,
+      );
     },
   },
 });
