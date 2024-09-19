@@ -1,7 +1,12 @@
-function TopListItem() {
+import { TableRowProps } from "../TableRow/configs";
+
+function TopListItem({ coin }: TableRowProps) {
   return (
     <pre>
-      {"BTC:"} <span className="font-medium text-blue-600">{"60 000 %"}</span>
+      {coin.symbol + ":"}{" "}
+      <span className="font-medium text-blue-600">
+        {Number(coin.priceUsd).toFixed(2) + "$"}
+      </span>
     </pre>
   );
 }

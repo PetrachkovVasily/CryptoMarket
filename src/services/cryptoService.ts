@@ -6,9 +6,11 @@ export const cryptoAPI = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: "https://api.coincap.io/v2/assets" }),
   endpoints: (build) => ({
     fetchAllCoins: build.query<pageCoins, number>({
-      query: () => ({
+      query: (limit) => ({
         url: "",
-        params: {},
+        params: {
+          limit: limit,
+        },
       }),
     }),
     fetchSingleCoin: build.query<singleCoin, string | undefined>({

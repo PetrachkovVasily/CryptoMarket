@@ -3,7 +3,6 @@ import Button from "../Button";
 import Modal from "../Modal";
 import SearchBar from "../SearchBar";
 import TopList from "../TopList";
-import React from "react";
 
 function Header() {
   const [modalActive, setModalActive] = useState(false);
