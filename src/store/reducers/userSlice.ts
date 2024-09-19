@@ -29,10 +29,19 @@ export const userSlice = createSlice({
       }
     },
     removeCoin(state, action: PayloadAction<myCoin>) {
-      state.data.splice(
-        state.data.findIndex((n) => n.coin?.id === action.payload.coin?.id),
-        1,
+      console.log(action.payload.amount);
+
+      const isBrief = state.data.findIndex(
+        (n) => n.coin?.id === action.payload.coin?.id,
       );
+      if (state.data[isBrief].amount <= action.payload.amount) {
+        state.data.splice(
+          state.data.findIndex((n) => n.coin?.id === action.payload.coin?.id),
+          1,
+        );
+      } else {
+        state.data[isBrief].amount -= action.payload.amount;
+      }
     },
   },
 });

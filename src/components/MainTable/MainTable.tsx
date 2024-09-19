@@ -13,7 +13,6 @@ function MainTable() {
   const { data: coinsList } = cryptoAPI.useFetchAllCoinsQuery(100);
   const dispatch = useAppDispatch();
   const coins = useAppSelector((state) => state.coinReducer);
-  const user = useAppSelector((state) => state.userReducer);
   const [amount, setAmount] = useState<number>(0);
 
   const [modalActive, setModalActive] = useState(false);

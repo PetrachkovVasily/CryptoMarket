@@ -24,13 +24,14 @@ function BriefElement({ coin }: BriefElementProps) {
   }
 
   return (
-    <div className="flex justify-between">
+    <div className="flex items-center justify-between">
       {coin.coin ? (
         <>
           <CoinName name={coin.coin.name} symbol={coin.coin.symbol} />
           <div className="flex items-center gap-3">
+            <h3>{coin.amount}</h3>
             <Input
-              onChange={(e) => setAmount(-e.target.value)}
+              onChange={(e) => setAmount(+e.target.value)}
               type="number"
               variant={"secondary"}
               placeholder="Remove"
