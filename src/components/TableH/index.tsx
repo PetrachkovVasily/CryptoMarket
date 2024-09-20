@@ -22,7 +22,7 @@ const thVariants = cva("", {
       tertiary: "ml-[4px] w-[75px]",
       fourth: "ml-[4px] w-[54px]",
       fifth: "w-[42px]",
-      sixth: "ml-[12px] w-[136px]",
+      sixth: "ml-[12px] w-[75px]",
     },
   },
   defaultVariants: {

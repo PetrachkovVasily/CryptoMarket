@@ -51,7 +51,6 @@ function TableRow({ coin, setModalActive }: TableRowProps) {
           </TextHeader>
         )}
       </TableD>
-
       <TableD variant={"fifth"}>
         {+coin.changePercent24Hr > ZERO ? (
           <TextHeader colorT={"green"}>
@@ -63,7 +62,9 @@ function TableRow({ coin, setModalActive }: TableRowProps) {
           </TextHeader>
         )}
       </TableD>
-      <TableD variant={"sixth"}>${Number(coin.marketCapUsd).toFixed(2)}</TableD>
+      <TableD variant={"sixth"}>
+        <TextHeader>{formatValue(Number(coin.marketCapUsd))}%</TextHeader>
+      </TableD>
     </tr>
   );
 }

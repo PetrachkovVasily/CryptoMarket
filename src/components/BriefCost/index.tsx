@@ -1,5 +1,7 @@
 import { SPACE, ZERO } from "../../constants/notes";
 import { useAppSelector } from "../../hooks/redux";
+import { formatValue } from "../../utils/formater/textFormater";
+import TextHeader from "../TextHeader";
 
 function BriefCost() {
   const user = useAppSelector((state) => state.userReducer);
@@ -22,16 +24,36 @@ function BriefCost() {
   }
 
   return (
-    <pre>
-      {Number(briefNums.sum).toFixed(2)} <span>USD</span>
+    <pre className="flex gap-2">
+      {formatValue(Number(briefNums.sum))} <span>USD</span>
       {SPACE}
-      {Number(briefNums.diff).toFixed(2)}
-      {SPACE}
-      <span>
-        ({Number((briefNums.newSum - briefNums.sum) / briefNums.sum).toFixed(2)}
-        {SPACE}
-        %)
-      </span>
+      {+briefNums.diff > ZERO ? (
+        <TextHeader colorT={"green"}>
+          {formatValue(Number(briefNums.diff))}
+          {SPACE}
+          <span>
+            (
+            {formatValue(
+              Number((briefNums.newSum - briefNums.sum) / briefNums.sum),
+            )}
+            {SPACE}
+            %)
+          </span>
+        </TextHeader>
+      ) : (
+        <TextHeader colorT={"red"}>
+          {formatValue(Number(briefNums.diff))}
+          {SPACE}
+          <span>
+            (
+            {formatValue(
+              Number((briefNums.newSum - briefNums.sum) / briefNums.sum),
+            )}
+            {SPACE}
+            %)
+          </span>
+        </TextHeader>
+      )}
     </pre>
   );
 }

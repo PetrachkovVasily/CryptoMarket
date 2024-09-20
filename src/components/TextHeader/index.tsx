@@ -29,7 +29,7 @@ const divVariants = cva("font-bold", {
     variant: {
       primary: "",
       secondary: "w-[90px] overflow-hidden",
-      tertiary: "text-[#a6c3b0]",
+      tertiary: "text-[#aaaaaa]",
       fourth: "text-[14px] font-semibold",
     },
     colorT: {

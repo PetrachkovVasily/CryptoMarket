@@ -1,3 +1,5 @@
+import { ZERO } from "../../constants/notes";
+import { formatValue } from "../../utils/formater/textFormater";
 import CoinName from "../CoinName";
 import TextHeader from "../TextHeader";
 import { CoinTitleProps } from "./config";
@@ -9,10 +11,16 @@ function CoinTitle({ name, symbol, price, change24h }: CoinTitleProps) {
         <CoinName name={name} symbol={symbol} />
       </div>
       <div className="flex flex-wrap items-center gap-[6px]">
-        <h1 className="text-[40px] font-bold">${price}</h1>
-        <TextHeader variant={"fourth"}>
-          <h3>{change24h}%</h3>
-        </TextHeader>
+        <h1 className="text-[40px] font-bold">${formatValue(+price)}</h1>
+        {+change24h > ZERO ? (
+          <TextHeader variant={"fourth"} colorT={"green"}>
+            {formatValue(+change24h)}%
+          </TextHeader>
+        ) : (
+          <TextHeader variant={"fourth"} colorT={"red"}>
+            {formatValue(+change24h)}%
+          </TextHeader>
+        )}
       </div>
     </div>
   );

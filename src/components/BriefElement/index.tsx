@@ -7,6 +7,7 @@ import { BriefElementProps } from "./config";
 import { cryptoAPI } from "../../services/cryptoService";
 import TextHeader from "../TextHeader";
 import { ZERO } from "../../constants/notes";
+import { formatValue } from "../../utils/formater/textFormater";
 
 function BriefElement({ coin }: BriefElementProps) {
   const dispatch = useAppDispatch();
@@ -69,11 +70,19 @@ function BriefElement({ coin }: BriefElementProps) {
             alt="icon"
           />
           <TextHeader>
-            <h3>{calculateBrief().toFixed(2)}</h3>
-            <h3>{Number(coin.coin.priceUsd).toFixed(2)}$</h3>
+            {calculateBrief() > ZERO ? (
+              <TextHeader colorT={"green"}>
+                {formatValue(calculateBrief())}$
+              </TextHeader>
+            ) : (
+              <TextHeader colorT={"red"}>
+                {formatValue(calculateBrief())}$
+              </TextHeader>
+            )}
+            <h3>{formatValue(+coin.coin.priceUsd)}$</h3>
           </TextHeader>
           <div className="flex items-center gap-3">
-            <h3>{coin.amount}</h3>
+            <h3>Own: {coin.amount}</h3>
             <Input
               value={amount.toString()}
               onChange={(e) => setAmount(+e.target.value)}
