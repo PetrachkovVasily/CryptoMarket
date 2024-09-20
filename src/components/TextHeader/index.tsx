@@ -8,9 +8,17 @@ interface DivProps
   children: ReactNode;
 }
 
-function TextHeader({ children, className, variant }: DivProps) {
+function TextHeader({
+  children,
+  className,
+  variant,
+  colorT,
+  ...props
+}: DivProps) {
   return (
-    <div className={cn(divVariants({ variant, className }))}>{children}</div>
+    <div className={cn(divVariants({ variant, colorT, className }))} {...props}>
+      {children}
+    </div>
   );
 }
 
@@ -21,11 +29,17 @@ const divVariants = cva("font-bold", {
     variant: {
       primary: "",
       secondary: "w-[90px] overflow-hidden",
-      tertiary: "text-[#A6B0C3]",
+      tertiary: "text-[#a6c3b0]",
       fourth: "text-[14px] font-semibold",
+    },
+    colorT: {
+      default: "",
+      green: "text-[#19d959]",
+      red: "text-[#dd3d3d]",
     },
   },
   defaultVariants: {
     variant: "primary",
+    colorT: "default",
   },
 });

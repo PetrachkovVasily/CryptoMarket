@@ -5,6 +5,9 @@ import { TableRowProps } from "./configs";
 import { useAppDispatch } from "../../hooks/redux";
 import { coinSlice } from "../../store/reducers/CoinSlice";
 import TableD from "../TableD";
+import { formatValue } from "../../utils/formater/textFormater";
+import TextHeader from "../TextHeader";
+import { ZERO } from "../../constants/notes";
 
 function TableRow({ coin, setModalActive }: TableRowProps) {
   const navigate = useNavigate();
@@ -37,9 +40,28 @@ function TableRow({ coin, setModalActive }: TableRowProps) {
       <TableD variant={"tertiary"}>
         <CoinName name={coin.name} symbol={coin.symbol} />
       </TableD>
-      <TableD variant={"fourth"}>${Number(coin.priceUsd).toFixed(2)}</TableD>
+      <TableD variant={"fourth"}>
+        {+coin.changePercent24Hr > ZERO ? (
+          <TextHeader colorT={"green"}>
+            ${formatValue(Number(coin.priceUsd))}
+          </TextHeader>
+        ) : (
+          <TextHeader colorT={"red"}>
+            ${formatValue(Number(coin.priceUsd))}
+          </TextHeader>
+        )}
+      </TableD>
+
       <TableD variant={"fifth"}>
-        {Number(coin.changePercent24Hr).toFixed(2)}%
+        {+coin.changePercent24Hr > ZERO ? (
+          <TextHeader colorT={"green"}>
+            {formatValue(Number(coin.changePercent24Hr))}%
+          </TextHeader>
+        ) : (
+          <TextHeader colorT={"red"}>
+            {formatValue(Number(coin.changePercent24Hr))}%
+          </TextHeader>
+        )}
       </TableD>
       <TableD variant={"sixth"}>${Number(coin.marketCapUsd).toFixed(2)}</TableD>
     </tr>
