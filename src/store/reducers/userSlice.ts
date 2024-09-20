@@ -45,7 +45,12 @@ export const userSlice = createSlice({
     },
 
     setAPICoinData(state, action: PayloadAction<cryptoCoin>) {
-      state.dataBrief.push(action.payload);
+      const isBrief = state.dataBrief.findIndex(
+        (n) => n.id === action.payload?.id,
+      );
+      if (isBrief == -1) {
+        state.dataBrief.push(action.payload);
+      }
     },
     removeAPICoinData(state, action: PayloadAction<cryptoCoin>) {
       state.dataBrief.splice(

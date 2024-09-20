@@ -39,11 +39,35 @@ function BriefElement({ coin }: BriefElementProps) {
     setAmount(0);
   }
 
+  function calculateBrief() {
+    let diff = 0;
+    const isBrief = user.data.findIndex(
+      (item) => item.coin?.id == coin.coin?.id,
+    );
+
+    if (
+      user.data[isBrief] &&
+      user.data[isBrief].coin?.priceUsd &&
+      user.data[isBrief].coin &&
+      user.dataBrief[isBrief]
+    ) {
+      diff =
+        Number(user.dataBrief[isBrief].priceUsd) -
+        Number(user.data[isBrief].coin.priceUsd);
+    }
+    return diff;
+  }
+
   return (
     <div className="flex items-center justify-between">
       {coin.coin ? (
         <>
-          <CoinName name={coin.coin.name} symbol={coin.coin.symbol} />
+          <img
+            className="mr-2 h-[24px] w-[24px]"
+            src={`https://assets.coincap.io/assets/icons/${coin.coin.symbol.toLowerCase()}@2x.png`}
+            alt="icon"
+          />
+          <h3>{calculateBrief().toFixed(2)}</h3>
           <div className="flex items-center gap-3">
             <h3>{coin.amount}</h3>
             <Input
