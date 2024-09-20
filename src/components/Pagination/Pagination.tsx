@@ -13,8 +13,10 @@ function Pagination({ current, setCurrent }: PaginationProps) {
   }
 
   function decreaseOff() {
-    dispatch(offsetSlice.actions.decreaseOffset());
-    setCurrent(current - HUNDRED);
+    if (current > ONE) {
+      dispatch(offsetSlice.actions.decreaseOffset());
+      setCurrent(current - HUNDRED);
+    }
   }
 
   return (

@@ -4,6 +4,7 @@ export const ZERO = 0;
 export const ONE = 1;
 export const HUNDRED = 100;
 export const THREE = 3;
+export const MAX = 999;
 
 export const SPACE = " ";
 

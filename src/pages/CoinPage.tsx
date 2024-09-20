@@ -9,7 +9,7 @@ import Input from "../components/Input/index.tsx";
 import { Link } from "react-router-dom";
 import { userSlice } from "../store/reducers/userSlice.ts";
 import TextHeader from "../components/TextHeader/index.tsx";
-import { ZERO } from "../constants/notes.ts";
+import { MAX, ZERO } from "../constants/notes.ts";
 import { SLASH } from "../constants/paths.ts";
 import CoinSection from "../components/CoinSection/index.tsx";
 import Loader from "../components/Loader/index.tsx";
@@ -36,15 +36,17 @@ function CoinPage() {
   }, [isError]);
 
   function addToBrief() {
-    dispatch(
-      userSlice.actions.addCoin({
-        coin: coins.currentCoin,
-        amount: amount,
-      }),
-    );
+    if (amount > ZERO && amount <= MAX) {
+      dispatch(
+        userSlice.actions.addCoin({
+          coin: coins.currentCoin,
+          amount: amount,
+        }),
+      );
 
-    setAmount(ZERO);
-    setModalActive(false);
+      setAmount(ZERO);
+      setModalActive(false);
+    }
   }
 
   return (

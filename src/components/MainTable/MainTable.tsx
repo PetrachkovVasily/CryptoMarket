@@ -10,7 +10,7 @@ import Button from "../Button";
 import { userSlice } from "../../store/reducers/userSlice";
 import { MainProps } from "./config";
 import TextHeader from "../TextHeader";
-import { HUNDRED, ZERO } from "../../constants/notes";
+import { HUNDRED, MAX, ZERO } from "../../constants/notes";
 import Loader from "../Loader";
 
 function MainTable({ current }: MainProps) {
@@ -31,15 +31,17 @@ function MainTable({ current }: MainProps) {
   }, [coinsList, current]);
 
   function addToBrief() {
-    dispatch(
-      userSlice.actions.addCoin({
-        coin: coins.currentCoin,
-        amount: amount,
-      }),
-    );
+    if (amount > ZERO && amount <= MAX) {
+      dispatch(
+        userSlice.actions.addCoin({
+          coin: coins.currentCoin,
+          amount: amount,
+        }),
+      );
 
-    setAmount(ZERO);
-    setModalActive(false);
+      setAmount(ZERO);
+      setModalActive(false);
+    }
   }
 
   return (
@@ -56,6 +58,8 @@ function MainTable({ current }: MainProps) {
         <div className="flex items-center">
           <Input
             value={amount.toString()}
+            min={1}
+            max={999}
             onChange={(e) => setAmount(+e.target.value)}
             className="h-[42px]"
             variant={"secondary"}

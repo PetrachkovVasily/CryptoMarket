@@ -6,7 +6,7 @@ import { userSlice } from "../../store/reducers/userSlice";
 import { BriefElementProps } from "./config";
 import { cryptoAPI } from "../../services/cryptoService";
 import TextHeader from "../TextHeader";
-import { ZERO } from "../../constants/notes";
+import { MAX, ZERO } from "../../constants/notes";
 import { formatValue } from "../../utils/formater/textFormater";
 
 function BriefElement({ coin }: BriefElementProps) {
@@ -24,21 +24,22 @@ function BriefElement({ coin }: BriefElementProps) {
   }, [coinBrief]);
 
   function removeFromBrief() {
-    const isBrief = user.data.findIndex(
-      (item) => item.coin?.id == coin.coin?.id,
-    );
-    dispatch(
-      userSlice.actions.removeCoin({
-        coin: user.data[isBrief].coin,
-        amount: amount,
-      }),
-    );
-    console.log(user.data[isBrief].amount, amount);
+    if (amount > ZERO && amount <= MAX) {
+      const isBrief = user.data.findIndex(
+        (item) => item.coin?.id == coin.coin?.id,
+      );
+      dispatch(
+        userSlice.actions.removeCoin({
+          coin: user.data[isBrief].coin,
+          amount: amount,
+        }),
+      );
 
-    if (user.data[isBrief].amount <= amount && coin.coin) {
-      dispatch(userSlice.actions.removeAPICoinData(coin.coin));
+      if (user.data[isBrief].amount <= amount && coin.coin) {
+        dispatch(userSlice.actions.removeAPICoinData(coin.coin));
+      }
+      setAmount(ZERO);
     }
-    setAmount(ZERO);
   }
 
   function calculateBrief() {
@@ -61,7 +62,7 @@ function BriefElement({ coin }: BriefElementProps) {
   }
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-[8px]">
       {coin.coin ? (
         <>
           <img
@@ -81,9 +82,11 @@ function BriefElement({ coin }: BriefElementProps) {
             )}
             <h3>{formatValue(+coin.coin.priceUsd)}$</h3>
           </TextHeader>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-[8px]">
             <h3>Own: {coin.amount}</h3>
             <Input
+              min={0}
+              max={999}
               value={amount.toString()}
               onChange={(e) => setAmount(+e.target.value)}
               type="number"

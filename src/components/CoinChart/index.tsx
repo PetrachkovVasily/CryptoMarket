@@ -18,7 +18,6 @@ function CoinChart({ id }: ChartProps) {
     interval: option,
   });
 
-  console.log(coin);
   function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
     setOption(event.target.value);
     setChartLength(generateParams(event.target.value));
