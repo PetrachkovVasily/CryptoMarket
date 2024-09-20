@@ -11,6 +11,7 @@ import Modal from "../components/Modal/index.tsx";
 import Input from "../components/Input/index.tsx";
 import { Link } from "react-router-dom";
 import { userSlice } from "../store/reducers/userSlice.ts";
+import TextHeader from "../components/TextHeader/index.tsx";
 
 function CoinPage() {
   const params = useParams();
@@ -48,7 +49,9 @@ function CoinPage() {
           variant={"add"}
           size={"neutral"}
         >
-          <h3 className="font-bold">Add {coin?.data.name} to briefcase</h3>
+          <TextHeader>
+            <h3>Add {coin?.data.name} to briefcase</h3>
+          </TextHeader>
           <div className="flex items-center">
             <Input
               value={amount.toString()}

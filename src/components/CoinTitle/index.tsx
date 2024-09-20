@@ -1,4 +1,5 @@
 import CoinName from "../CoinName";
+import TextHeader from "../TextHeader";
 import { CoinTitleProps } from "./config";
 
 function CoinTitle({ name, symbol, price, change24h }: CoinTitleProps) {
@@ -9,7 +10,9 @@ function CoinTitle({ name, symbol, price, change24h }: CoinTitleProps) {
       </div>
       <div className="flex flex-wrap items-center gap-[6px]">
         <h1 className="text-[40px] font-bold">${price}</h1>
-        <h3 className="text-[14px] font-semibold">{change24h}%</h3>
+        <TextHeader variant={"fourth"}>
+          <h3>{change24h}%</h3>
+        </TextHeader>
       </div>
     </div>
   );

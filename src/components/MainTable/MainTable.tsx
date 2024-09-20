@@ -9,6 +9,7 @@ import Input from "../Input";
 import Button from "../Button";
 import { userSlice } from "../../store/reducers/userSlice";
 import { MainProps } from "./config";
+import TextHeader from "../TextHeader";
 
 function MainTable({ current, setCurrent }: MainProps) {
   const dispatch = useAppDispatch();
@@ -47,9 +48,9 @@ function MainTable({ current, setCurrent }: MainProps) {
         variant={"add"}
         size={"neutral"}
       >
-        <h3 className="font-bold">
-          Add {coins.currentCoin?.name} to briefcase
-        </h3>
+        <TextHeader>
+          <h3>Add {coins.currentCoin?.name} to briefcase</h3>
+        </TextHeader>
         <div className="flex items-center">
           <Input
             value={amount.toString()}

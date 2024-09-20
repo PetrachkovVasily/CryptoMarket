@@ -1,3 +1,4 @@
+import TextHeader from "../TextHeader";
 import { CoinNameProps } from "./config";
 
 function CoinName({ name, symbol }: CoinNameProps) {
@@ -9,8 +10,12 @@ function CoinName({ name, symbol }: CoinNameProps) {
         alt="icon"
       />
       <div className="flex flex-col">
-        <h3 className="w-[90px] overflow-hidden">{name}</h3>
-        <h3 className="text-[#A6B0C3]">{symbol}</h3>
+        <TextHeader variant={"secondary"}>
+          <h3>{name}</h3>
+        </TextHeader>
+        <TextHeader variant={"tertiary"}>
+          <h3>{symbol}</h3>
+        </TextHeader>
       </div>
     </div>
   );

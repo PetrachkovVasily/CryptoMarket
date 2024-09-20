@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/userSlice";
 import { BriefElementProps } from "./config";
 import { cryptoAPI } from "../../services/cryptoService";
+import TextHeader from "../TextHeader";
 
 function BriefElement({ coin }: BriefElementProps) {
   const dispatch = useAppDispatch();
@@ -66,7 +67,9 @@ function BriefElement({ coin }: BriefElementProps) {
             src={`https://assets.coincap.io/assets/icons/${coin.coin.symbol.toLowerCase()}@2x.png`}
             alt="icon"
           />
-          <h3>{calculateBrief().toFixed(2)}</h3>
+          <TextHeader>
+            <h3>{calculateBrief().toFixed(2)}</h3>
+          </TextHeader>
           <div className="flex items-center gap-3">
             <h3>{coin.amount}</h3>
             <Input
