@@ -19,7 +19,6 @@ function BriefCost() {
     });
     return { sum: sum, diff: diff, newSum: newSum };
   }
-  console.log(user.dataBrief);
 
   return (
     <pre>

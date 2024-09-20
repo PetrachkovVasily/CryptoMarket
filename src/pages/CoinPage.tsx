@@ -90,7 +90,7 @@ function CoinPage() {
                 marketCap={Number(coin.data.marketCapUsd).toFixed(2)}
               />
             </section>
-            <CoinChart />
+            <CoinChart id={coin.data.id} />
           </>
         ) : (
           <h1>Loading</h1>

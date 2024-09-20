@@ -1,4 +1,10 @@
 import Chart from "react-apexcharts";
+import { ChartProps } from "./config";
+import { cryptoAPI } from "../../services/cryptoService";
+import Select from "../Select";
+import { useState } from "react";
+import { DAY, DAY_SIZE, HOUR_1, HOUR_12 } from "../../constants/intervals";
+import { chartGeneration, generateParams } from "../../utils/chart/chart";
 
 const config = {
   options: {
@@ -18,12 +24,34 @@ const config = {
   ],
 };
 
-function CoinChart() {
+function CoinChart({ id }: ChartProps) {
+  const [option, setOption] = useState<string>(DAY);
+  const [chartLength, setChartLength] = useState<string>(DAY_SIZE);
+
+  const data = [
+    { value: HOUR_1, option: "1 hour" },
+    { value: HOUR_12, option: "12 hours" },
+    { value: DAY, option: "1 day" },
+  ];
+
+  const { data: coin } = cryptoAPI.useFetchCoinHistoryQuery({
+    id: id,
+    interval: option,
+  });
+
+  console.log(coin);
+  function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    setOption(event.target.value);
+    setChartLength(generateParams(event.target.value));
+  }
+
   return (
     <div>
+      <h3>Changes in</h3>
+      <Select data={data} handleSelect={handleSelect} />
       <Chart
-        options={config.options}
-        series={config.series}
+        options={chartGeneration(coin, chartLength)?.options}
+        series={chartGeneration(coin, chartLength)?.series}
         height={"350px"}
         type="line"
       ></Chart>

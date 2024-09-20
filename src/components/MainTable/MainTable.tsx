@@ -24,7 +24,6 @@ function MainTable({ current, setCurrent }: MainProps) {
   useEffect(() => {
     if (coinsList) {
       dispatch(coinSlice.actions.setData(coinsList));
-      console.log(coinsList);
     }
   }, [coinsList, current]);
 
