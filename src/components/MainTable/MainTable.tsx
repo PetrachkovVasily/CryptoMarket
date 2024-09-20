@@ -10,13 +10,15 @@ import Button from "../Button";
 import { userSlice } from "../../store/reducers/userSlice";
 import { MainProps } from "./config";
 import TextHeader from "../TextHeader";
+import { HUNDRED, ZERO } from "../../constants/notes";
+import Loader from "../Loader";
 
-function MainTable({ current, setCurrent }: MainProps) {
+function MainTable({ current }: MainProps) {
   const dispatch = useAppDispatch();
   const coins = useAppSelector((state) => state.coinReducer);
   const [amount, setAmount] = useState<number>(0);
-  const { data: coinsList } = cryptoAPI.useFetchAllCoinsQuery({
-    limit: 100,
+  const { data: coinsList, isLoading } = cryptoAPI.useFetchAllCoinsQuery({
+    limit: HUNDRED,
     currentOffset: current,
   });
 
@@ -36,7 +38,7 @@ function MainTable({ current, setCurrent }: MainProps) {
       }),
     );
 
-    setAmount(0);
+    setAmount(ZERO);
     setModalActive(false);
   }
 
@@ -65,11 +67,11 @@ function MainTable({ current, setCurrent }: MainProps) {
           </Button>
         </div>
       </Modal>
-      <table className="w-[100%] max-w-[1440px] table-auto text-[12px] sm:text-[14px]">
-        <TableHead />
-        <tbody>
-          {coins ? (
-            coins.data.map((item) => {
+      {!isLoading ? (
+        <table className="w-[100%] max-w-[1440px] table-auto text-[12px] sm:text-[14px]">
+          <TableHead />
+          <tbody>
+            {coins.data.map((item) => {
               return (
                 <TableRow
                   key={item.id}
@@ -77,12 +79,12 @@ function MainTable({ current, setCurrent }: MainProps) {
                   setModalActive={setModalActive}
                 />
               );
-            })
-          ) : (
-            <></>
-          )}
-        </tbody>
-      </table>
+            })}
+          </tbody>
+        </table>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

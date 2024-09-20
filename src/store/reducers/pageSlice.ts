@@ -1,8 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-export type currentOffset = {
-  currentOffset: number;
-};
+import { HUNDRED } from "../../constants/notes";
+import { currentOffset } from "../../utils/interfaces/cryptoInterfaces";
 
 const initialState: currentOffset = {
   currentOffset: 0,
@@ -13,10 +11,10 @@ export const offsetSlice = createSlice({
   initialState,
   reducers: {
     increaseOffset(state) {
-      state.currentOffset += 100;
+      state.currentOffset += HUNDRED;
     },
     decreaseOffset(state) {
-      state.currentOffset -= 100;
+      state.currentOffset -= HUNDRED;
     },
   },
 });

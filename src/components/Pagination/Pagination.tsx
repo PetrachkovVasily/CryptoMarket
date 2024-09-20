@@ -1,22 +1,20 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { HUNDRED, ONE } from "../../constants/notes";
+import { useAppDispatch } from "../../hooks/redux";
 import { offsetSlice } from "../../store/reducers/pageSlice";
 import Button from "../Button";
 import { PaginationProps } from "./config";
 
 function Pagination({ current, setCurrent }: PaginationProps) {
   const dispatch = useAppDispatch();
-  const coins = useAppSelector((state) => state.coinReducer);
-  const currentOffset = useAppSelector((state) => state.offsetReducer);
 
   function increaseOff() {
     dispatch(offsetSlice.actions.increaseOffset());
-    setCurrent(current + 100);
-    console.log(coins);
+    setCurrent(current + HUNDRED);
   }
 
   function decreaseOff() {
     dispatch(offsetSlice.actions.decreaseOffset());
-    setCurrent(current - 100);
+    setCurrent(current - HUNDRED);
   }
 
   return (
@@ -24,7 +22,7 @@ function Pagination({ current, setCurrent }: PaginationProps) {
       <Button onClick={decreaseOff} variant={"secondary"}>
         Previous
       </Button>
-      <h3>Page {current / 100 + 1}</h3>
+      <h3>Page {current / HUNDRED + ONE}</h3>
       <Button onClick={increaseOff} variant={"secondary"}>
         Next
       </Button>

@@ -1,3 +1,4 @@
+import { SPACE, ZERO } from "../../constants/notes";
 import { useAppSelector } from "../../hooks/redux";
 
 function BriefCost() {
@@ -6,9 +7,9 @@ function BriefCost() {
   const briefNums = calculateBrief();
 
   function calculateBrief() {
-    let diff = 0;
-    let sum = 0;
-    let newSum = 0;
+    let diff = ZERO;
+    let sum = ZERO;
+    let newSum = ZERO;
 
     user.dataBrief.forEach((item, index) => {
       if (user.data[index] && user.data[index].coin) {
@@ -22,10 +23,13 @@ function BriefCost() {
 
   return (
     <pre>
-      {Number(briefNums.sum).toFixed(2)} <span>USD</span>{" "}
-      {Number(briefNums.diff).toFixed(2)}{" "}
+      {Number(briefNums.sum).toFixed(2)} <span>USD</span>
+      {SPACE}
+      {Number(briefNums.diff).toFixed(2)}
+      {SPACE}
       <span>
-        ({Number((briefNums.newSum - briefNums.sum) / briefNums.sum).toFixed(2)}{" "}
+        ({Number((briefNums.newSum - briefNums.sum) / briefNums.sum).toFixed(2)}
+        {SPACE}
         %)
       </span>
     </pre>

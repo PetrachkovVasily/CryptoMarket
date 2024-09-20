@@ -17,10 +17,12 @@ export default TableD;
 const tdVariants = cva("", {
   variants: {
     variant: {
-      primary: "",
-      secondary: "w-[90px] overflow-hidden",
-      tertiary: "text-[#A6B0C3]",
-      fourth: "text-[14px] font-semibold",
+      primary: "flex h-[64px] w-[56px] items-center justify-center",
+      secondary: "w-[30px]",
+      tertiary: "ml-[4px] w-[75px]",
+      fourth: "ml-[4px] w-[54px]",
+      fifth: "w-[42px]",
+      sixth: "ml-[12px] w-[136px]",
     },
   },
   defaultVariants: {

@@ -1,19 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { cryptoCoin } from "../../utils/interfaces/cryptoInterfaces";
+import {
+  briefCoins,
+  cryptoCoin,
+  myCoin,
+} from "../../utils/interfaces/cryptoInterfaces";
+import { ONE } from "../../constants/notes";
 
 const initialState: briefCoins = {
   data: [],
   dataBrief: [],
-};
-
-export type myCoin = {
-  coin: cryptoCoin | undefined;
-  amount: number;
-};
-
-export type briefCoins = {
-  data: myCoin[];
-  dataBrief: cryptoCoin[];
 };
 
 export const userSlice = createSlice({
@@ -37,7 +32,7 @@ export const userSlice = createSlice({
       if (state.data[isBrief].amount <= action.payload.amount) {
         state.data.splice(
           state.data.findIndex((n) => n.coin?.id === action.payload.coin?.id),
-          1,
+          ONE,
         );
       } else {
         state.data[isBrief].amount -= action.payload.amount;

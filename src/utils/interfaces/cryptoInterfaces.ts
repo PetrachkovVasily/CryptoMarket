@@ -18,3 +18,17 @@ export type pageCoins = {
 export type singleCoin = {
   data: cryptoCoin;
 };
+
+export type myCoin = {
+  coin: cryptoCoin | undefined;
+  amount: number;
+};
+
+export type briefCoins = {
+  data: myCoin[];
+  dataBrief: cryptoCoin[];
+};
+
+export type currentOffset = {
+  currentOffset: number;
+};

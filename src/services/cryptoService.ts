@@ -1,31 +1,20 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { pageCoins, singleCoin } from "../utils/interfaces/cryptoInterfaces";
 import { coinHistoryListInterface } from "../utils/interfaces/chartInterfaces";
-
-export type fetchProps = {
-  limit: number;
-  currentOffset: number;
-};
-
-export type historyProps = {
-  id: string;
-  interval: string;
-};
-
-export type coinsData = {
-  data: {
-    priceUsd: "";
-    time: 0;
-  }[];
-};
+import { BASE_URL, HISTORY } from "../constants/urls";
+import { EMPTY } from "../constants/paths";
+import {
+  fetchProps,
+  historyProps,
+} from "../utils/interfaces/cryptoAPIInterfaces";
 
 export const cryptoAPI = createApi({
   reducerPath: "cryptoApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://api.coincap.io/v2/assets" }),
+  baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (build) => ({
     fetchAllCoins: build.query<pageCoins, fetchProps>({
       query: ({ limit, currentOffset }) => ({
-        url: "",
+        url: EMPTY,
         params: {
           limit: limit,
           offset: currentOffset,
@@ -39,7 +28,7 @@ export const cryptoAPI = createApi({
     }),
     fetchCoinHistory: build.query<coinHistoryListInterface, historyProps>({
       query: ({ id, interval }) => ({
-        url: `/${id}/history`,
+        url: `/${id}${HISTORY}`,
         params: {
           interval: interval,
         },

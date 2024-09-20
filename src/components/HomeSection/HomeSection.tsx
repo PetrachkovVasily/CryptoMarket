@@ -1,13 +1,10 @@
+import { tableSelectData } from "../../constants/notes";
 import { useAppDispatch } from "../../hooks/redux";
 import { coinSlice } from "../../store/reducers/CoinSlice";
 import Select from "../Select";
 
 function HomeSection() {
-  const data = [
-    { value: "priceUsd", option: "Price" },
-    { value: "marketCapUsd", option: "Market cap" },
-    { value: "changePercent24Hr", option: "24h %" },
-  ];
+  const data = tableSelectData;
 
   const dispatch = useAppDispatch();
   function handleSelect(event: React.ChangeEvent<HTMLSelectElement>) {

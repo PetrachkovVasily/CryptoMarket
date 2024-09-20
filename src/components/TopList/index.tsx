@@ -1,10 +1,11 @@
+import { THREE, ONE } from "../../constants/notes";
 import { cryptoAPI } from "../../services/cryptoService";
 import TopListItem from "../TopListItem";
 
 function TopList() {
   const { data: coins } = cryptoAPI.useFetchAllCoinsQuery({
-    limit: 3,
-    currentOffset: 0,
+    limit: THREE,
+    currentOffset: ONE,
   });
 
   return (

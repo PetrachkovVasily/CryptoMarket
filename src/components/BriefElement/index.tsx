@@ -6,6 +6,7 @@ import { userSlice } from "../../store/reducers/userSlice";
 import { BriefElementProps } from "./config";
 import { cryptoAPI } from "../../services/cryptoService";
 import TextHeader from "../TextHeader";
+import { ZERO } from "../../constants/notes";
 
 function BriefElement({ coin }: BriefElementProps) {
   const dispatch = useAppDispatch();
@@ -27,20 +28,20 @@ function BriefElement({ coin }: BriefElementProps) {
     );
     dispatch(
       userSlice.actions.removeCoin({
-        coin: user.data[
-          user.data.findIndex((item) => item.coin?.id == coin.coin?.id)
-        ].coin,
+        coin: user.data[isBrief].coin,
         amount: amount,
       }),
     );
-    if (user.data[isBrief].amount <= coin.amount && coin.coin) {
+    console.log(user.data[isBrief].amount, amount);
+
+    if (user.data[isBrief].amount <= amount && coin.coin) {
       dispatch(userSlice.actions.removeAPICoinData(coin.coin));
     }
-    setAmount(0);
+    setAmount(ZERO);
   }
 
   function calculateBrief() {
-    let diff = 0;
+    let diff = ZERO;
     const isBrief = user.data.findIndex(
       (item) => item.coin?.id == coin.coin?.id,
     );
@@ -69,6 +70,7 @@ function BriefElement({ coin }: BriefElementProps) {
           />
           <TextHeader>
             <h3>{calculateBrief().toFixed(2)}</h3>
+            <h3>{Number(coin.coin.priceUsd).toFixed(2)}$</h3>
           </TextHeader>
           <div className="flex items-center gap-3">
             <h3>{coin.amount}</h3>

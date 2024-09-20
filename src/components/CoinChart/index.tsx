@@ -3,18 +3,15 @@ import { ChartProps } from "./config";
 import { cryptoAPI } from "../../services/cryptoService";
 import Select from "../Select";
 import { useState } from "react";
-import { DAY, DAY_SIZE, HOUR_1, HOUR_12 } from "../../constants/intervals";
+import { DAY, DAY_SIZE } from "../../constants/intervals";
 import { chartGeneration, generateParams } from "../../utils/chart/chart";
+import { chartSelectData } from "../../constants/notes";
 
 function CoinChart({ id }: ChartProps) {
   const [option, setOption] = useState<string>(DAY);
   const [chartLength, setChartLength] = useState<string>(DAY_SIZE);
 
-  const data = [
-    { value: HOUR_1, option: "1 hour" },
-    { value: HOUR_12, option: "12 hours" },
-    { value: DAY, option: "1 day" },
-  ];
+  const data = chartSelectData;
 
   const { data: coin } = cryptoAPI.useFetchCoinHistoryQuery({
     id: id,
