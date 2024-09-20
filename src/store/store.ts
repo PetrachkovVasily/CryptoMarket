@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 import { cryptoAPI } from "../services/cryptoService";
 import coinReducer from "./reducers/CoinSlice";
 import userReducer from "./reducers/userSlice";
+import offsetReducer from "./reducers/pageSlice";
 import {
   persistStore,
   persistReducer,
@@ -24,6 +25,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   coinReducer,
   userReducer,
+  offsetReducer,
   [cryptoAPI.reducerPath]: cryptoAPI.reducer,
 });
 

@@ -1,6 +1,6 @@
-import { TableRowProps } from "../TableRow/configs";
+import { TopListProps } from "./config";
 
-function TopListItem({ coin }: TableRowProps) {
+function TopListItem({ coin }: TopListProps) {
   return (
     <pre>
       {coin.symbol + ":"}{" "}

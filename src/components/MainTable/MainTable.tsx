@@ -8,20 +8,25 @@ import Modal from "../Modal";
 import Input from "../Input";
 import Button from "../Button";
 import { userSlice } from "../../store/reducers/userSlice";
+import { MainProps } from "./config";
 
-function MainTable() {
-  const { data: coinsList } = cryptoAPI.useFetchAllCoinsQuery(100);
+function MainTable({ current, setCurrent }: MainProps) {
   const dispatch = useAppDispatch();
   const coins = useAppSelector((state) => state.coinReducer);
   const [amount, setAmount] = useState<number>(0);
+  const { data: coinsList } = cryptoAPI.useFetchAllCoinsQuery({
+    limit: 100,
+    currentOffset: current,
+  });
 
   const [modalActive, setModalActive] = useState(false);
 
   useEffect(() => {
     if (coinsList) {
       dispatch(coinSlice.actions.setData(coinsList));
+      console.log(coinsList);
     }
-  }, [coinsList]);
+  }, [coinsList, current]);
 
   function addToBrief() {
     dispatch(

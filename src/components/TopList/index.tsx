@@ -2,7 +2,10 @@ import { cryptoAPI } from "../../services/cryptoService";
 import TopListItem from "../TopListItem";
 
 function TopList() {
-  const { data: coins } = cryptoAPI.useFetchAllCoinsQuery(3);
+  const { data: coins } = cryptoAPI.useFetchAllCoinsQuery({
+    limit: 3,
+    currentOffset: 0,
+  });
 
   return (
     <div className="flex flex-col md:flex-row md:items-center md:gap-[14px]">

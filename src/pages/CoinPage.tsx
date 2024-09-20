@@ -6,15 +6,18 @@ import CoinTitle from "../components/CoinTitle";
 import { cryptoAPI } from "../services/cryptoService.ts";
 import { useState } from "react";
 import { coinSlice } from "../store/reducers/CoinSlice.ts";
-import { useAppDispatch } from "../hooks/redux.ts";
+import { useAppDispatch, useAppSelector } from "../hooks/redux.ts";
 import Modal from "../components/Modal/index.tsx";
 import Input from "../components/Input/index.tsx";
 import { Link } from "react-router-dom";
+import { userSlice } from "../store/reducers/userSlice.ts";
 
 function CoinPage() {
   const params = useParams();
   const [modalActive, setModalActive] = useState(false);
   const dispatch = useAppDispatch();
+  const coins = useAppSelector((state) => state.coinReducer);
+  const [amount, setAmount] = useState<number>(0);
 
   const { data: coin } = cryptoAPI.useFetchSingleCoinQuery(params.id);
 
@@ -22,6 +25,18 @@ function CoinPage() {
     event.stopPropagation();
     setModalActive(true);
     dispatch(coinSlice.actions.setCurrent(coin?.data));
+  }
+
+  function addToBrief() {
+    dispatch(
+      userSlice.actions.addCoin({
+        coin: coins.currentCoin,
+        amount: amount,
+      }),
+    );
+
+    setAmount(0);
+    setModalActive(false);
   }
 
   return (
@@ -36,11 +51,15 @@ function CoinPage() {
           <h3 className="font-bold">Add {coin?.data.name} to briefcase</h3>
           <div className="flex items-center">
             <Input
+              value={amount.toString()}
+              onChange={(e) => setAmount(+e.target.value)}
               className="h-[42px]"
               variant={"secondary"}
               placeholder="Add coin"
             />
-            <Button variant={"secondary"}>Add</Button>
+            <Button onClick={addToBrief} variant={"secondary"}>
+              Add
+            </Button>
           </div>
         </Modal>
         <Button className="w-fit px-2 hover:bg-[#A6B0C3]" variant={"tertiary"}>

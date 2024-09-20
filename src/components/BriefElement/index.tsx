@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Button from "../Button";
-import CoinName from "../CoinName";
 import Input from "../Input";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { userSlice } from "../../store/reducers/userSlice";
