@@ -2,7 +2,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { ReactNode, ThHTMLAttributes } from "react";
 import cn from "../../utils/cn";
 
-interface DivProps
+export interface DivProps
   extends ThHTMLAttributes<HTMLElement>,
     VariantProps<typeof thVariants> {
   children: ReactNode;

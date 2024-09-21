@@ -21,8 +21,6 @@ function BriefCost() {
       }
     });
 
-    console.log(newSum - sum);
-
     return { sum: sum, diff: diff, newSum: newSum };
   }
 
