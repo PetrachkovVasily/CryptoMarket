@@ -71,10 +71,10 @@ function BriefElement({ coin }: BriefElementProps) {
     color: "default",
   };
 
-  if (headerDiff.diff > 0) {
+  if (headerDiff.diff > ZERO) {
     headerDiff.color = "green";
     headerDiff.diffString = formatValue(headerDiff.diff);
-  } else if (headerDiff.diff < 0) {
+  } else if (headerDiff.diff < ZERO) {
     headerDiff.color = "red";
     headerDiff.diffString = formatValue(headerDiff.diff);
   } else {

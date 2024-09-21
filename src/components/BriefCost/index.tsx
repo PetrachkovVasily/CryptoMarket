@@ -26,7 +26,7 @@ function BriefCost() {
 
   return (
     <pre className="flex gap-2">
-      {briefNums.sum != 0 ? (
+      {briefNums.sum != ZERO ? (
         <>
           {formatValue(Number(briefNums.sum))} <span>USD</span>
           {SPACE}
@@ -45,19 +45,20 @@ function BriefCost() {
             </TextHeader>
           ) : (
             <TextHeader colorT={"red"}>
-              {briefNums.sum != 0 && briefNums.newSum - briefNums.sum != 0
+              {briefNums.sum != ZERO && briefNums.newSum - briefNums.sum != ZERO
                 ? formatValue(Number(briefNums.diff))
-                : 0}
+                : ZERO}
               {SPACE}
               <span>
                 (
-                {briefNums.sum != 0 && briefNums.newSum - briefNums.sum != 0
+                {briefNums.sum != ZERO &&
+                briefNums.newSum - briefNums.sum != ZERO
                   ? formatValue(
                       Number(
                         (briefNums.newSum - briefNums.sum) / briefNums.sum,
                       ),
                     )
-                  : 0}
+                  : ZERO}
                 {SPACE}
                 %)
               </span>
@@ -65,7 +66,7 @@ function BriefCost() {
           )}
         </>
       ) : (
-        0
+        ZERO
       )}
     </pre>
   );
