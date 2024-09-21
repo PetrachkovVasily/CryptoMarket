@@ -1,5 +1,5 @@
-import { formatValue } from "../../utils/formater/textFormater";
 import { CoinPropertyProps } from "./config";
+import { formatValue } from "../../utils/formater/textFormater";
 
 function CoinProperty({ title, value }: CoinPropertyProps) {
   return (

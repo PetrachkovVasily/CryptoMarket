@@ -1,8 +1,8 @@
-import { ZERO } from "../../constants/notes";
-import { formatValue } from "../../utils/formater/textFormater";
 import CoinName from "../CoinName";
 import TextHeader from "../TextHeader";
 import { CoinTitleProps } from "./config";
+import { ZERO } from "../../constants/notes";
+import { formatValue } from "../../utils/formater/textFormater";
 
 function CoinTitle({ name, symbol, price, change24h }: CoinTitleProps) {
   return (

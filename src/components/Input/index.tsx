@@ -1,5 +1,7 @@
-import { cva, VariantProps } from "class-variance-authority";
 import { InputHTMLAttributes } from "react";
+
+import { cva, VariantProps } from "class-variance-authority";
+
 import cn from "../../utils/cn";
 
 export interface InputProps

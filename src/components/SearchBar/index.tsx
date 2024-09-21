@@ -1,8 +1,12 @@
 import { useState } from "react";
-import Input from "../Input";
+
 import { redirect, useNavigate } from "react-router";
-import { useAppSelector } from "../../hooks/redux";
+
+import Icon from "../Icon";
+import Input from "../Input";
+import Button from "../Button";
 import { EMPTY } from "../../constants/paths";
+import { useAppSelector } from "../../hooks/redux";
 
 function SearchBar() {
   const coins = useAppSelector((state) => state.coinReducer);
@@ -23,16 +27,18 @@ function SearchBar() {
   return (
     <div className="flex h-fit items-center justify-between rounded-[5px] bg-[#EFF2F5] px-[8px] hover:border-[#A6B0C3]">
       <Input
+        id="search"
         value={coinName}
         onChange={(e) => setCoinName(e.target.value)}
         placeholder="Search"
       />
-      <img
+      <Button
+        id="serchIcon"
         onClick={toCoinPage}
-        className="h-[20px] w-[20px] cursor-pointer"
-        src="src/assets/searchIcon.svg"
-        alt="search icon"
-      />
+        className="h-[20px] w-[20px] cursor-pointer border-none p-0"
+      >
+        <Icon />
+      </Button>
     </div>
   );
 }

@@ -1,20 +1,22 @@
-import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
-import { cryptoAPI } from "../services/cryptoService";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
+
+import storage from "redux-persist/lib/storage";
+import { configureStore } from "@reduxjs/toolkit";
+
 import coinReducer from "./reducers/CoinSlice";
 import userReducer from "./reducers/userSlice";
 import offsetReducer from "./reducers/pageSlice";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { cryptoAPI } from "../services/cryptoService";
 
 const persistConfig = {
   key: "root",

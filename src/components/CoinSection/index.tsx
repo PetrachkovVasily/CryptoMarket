@@ -1,7 +1,7 @@
 import Button from "../Button";
 import CoinChart from "../CoinChart";
-import CoinParams from "../CoinParams.tsx";
 import CoinTitle from "../CoinTitle";
+import CoinParams from "../CoinParams.tsx";
 import { CoinSectionProps } from "./config";
 
 function CoinSection({ coin, showModal }: CoinSectionProps) {
@@ -16,6 +16,7 @@ function CoinSection({ coin, showModal }: CoinSectionProps) {
             change24h={Number(coin.data.changePercent24Hr).toFixed(2)}
           />
           <Button
+            id="addCoinToBriefBtn"
             onClick={showModal}
             className="font-medium"
             variant={"secondary"}

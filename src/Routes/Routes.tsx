@@ -3,8 +3,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import HomePage from "../pages/HomePage";
 import CoinPage from "../pages/CoinPage";
-import { EVERY, ID, SLASH } from "../constants/paths";
 import ErrorPage from "../pages/ErrorPage";
+import { EVERY, ID, SLASH } from "../constants/paths";
 
 export const router = createBrowserRouter([
   {

@@ -1,8 +1,8 @@
-import { HUNDRED, ONE } from "../../constants/notes";
-import { useAppDispatch } from "../../hooks/redux";
-import { offsetSlice } from "../../store/reducers/pageSlice";
 import Button from "../Button";
 import { PaginationProps } from "./config";
+import { useAppDispatch } from "../../hooks/redux";
+import { HUNDRED, ONE } from "../../constants/notes";
+import { offsetSlice } from "../../store/reducers/pageSlice";
 
 function Pagination({ current, setCurrent }: PaginationProps) {
   const dispatch = useAppDispatch();

@@ -1,10 +1,11 @@
 import { useState } from "react";
-import Button from "../Button";
+
 import Modal from "../Modal";
-import SearchBar from "../SearchBar";
+import Button from "../Button";
 import TopList from "../TopList";
-import BriefModal from "../BriefModal";
+import SearchBar from "../SearchBar";
 import BriefCost from "../BriefCost";
+import BriefModal from "../BriefModal";
 
 function Header() {
   const [modalActive, setModalActive] = useState(false);

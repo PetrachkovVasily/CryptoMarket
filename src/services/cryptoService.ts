@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+import { EMPTY } from "../constants/paths";
+import { BASE_URL, HISTORY } from "../constants/urls";
 import { pageCoins, singleCoin } from "../utils/interfaces/cryptoInterfaces";
 import { coinHistoryListInterface } from "../utils/interfaces/chartInterfaces";
-import { BASE_URL, HISTORY } from "../constants/urls";
-import { EMPTY } from "../constants/paths";
 import {
   fetchProps,
   historyProps,

@@ -1,5 +1,5 @@
-import Button from "../Button";
 import Input from "../Input";
+import Button from "../Button";
 import TextHeader from "../TextHeader";
 import { AddModalProps } from "./config";
 
@@ -11,13 +11,16 @@ function AddModal({ coin, amount, setAmount, addToBrief }: AddModalProps) {
       </TextHeader>
       <div className="flex items-center">
         <Input
+          id="addCoin"
           value={amount.toString()}
-          onChange={(e) => setAmount(+e.target.value)}
+          onChange={(e) => {
+            if (!isNaN(+e.target.value)) setAmount(+e.target.value);
+          }}
           className="h-[42px]"
           variant={"secondary"}
           placeholder="Add coin"
         />
-        <Button onClick={addToBrief} variant={"secondary"}>
+        <Button id="addToBriefBtn" onClick={addToBrief} variant={"secondary"}>
           Add
         </Button>
       </div>

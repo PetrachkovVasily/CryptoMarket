@@ -1,8 +1,7 @@
-import { tableSelectData } from "../../constants/notes";
-import { useAppDispatch } from "../../hooks/redux";
-import { coinSlice } from "../../store/reducers/CoinSlice";
 import Select from "../Select";
-
+import { useAppDispatch } from "../../hooks/redux";
+import { tableSelectData } from "../../constants/notes";
+import { coinSlice } from "../../store/reducers/CoinSlice";
 function HomeSection() {
   const data = tableSelectData;
 

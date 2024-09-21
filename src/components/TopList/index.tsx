@@ -1,6 +1,6 @@
-import { THREE, ONE } from "../../constants/notes";
-import { cryptoAPI } from "../../services/cryptoService";
 import TopListItem from "../TopListItem";
+import { ONE, THREE } from "../../constants/notes";
+import { cryptoAPI } from "../../services/cryptoService";
 
 function TopList() {
   const { data: coins } = cryptoAPI.useFetchAllCoinsQuery({

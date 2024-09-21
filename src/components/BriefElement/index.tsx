@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
-import Button from "../Button";
+
 import Input from "../Input";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { userSlice } from "../../store/reducers/userSlice";
-import { BriefElementProps } from "./config";
-import { cryptoAPI } from "../../services/cryptoService";
+import Button from "../Button";
 import TextHeader from "../TextHeader";
+import { BriefElementProps } from "./config";
 import { MAX, ZERO } from "../../constants/notes";
+import { cryptoAPI } from "../../services/cryptoService";
+import { userSlice } from "../../store/reducers/userSlice";
 import { formatValue } from "../../utils/formater/textFormater";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 function BriefElement({ coin }: BriefElementProps) {
   const dispatch = useAppDispatch();

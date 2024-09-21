@@ -1,6 +1,6 @@
-import { useAppSelector } from "../../hooks/redux";
 import BriefCost from "../BriefCost";
 import BriefElement from "../BriefElement";
+import { useAppSelector } from "../../hooks/redux";
 
 function BriefModal() {
   const user = useAppSelector((state) => state.userReducer);

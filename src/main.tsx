@@ -1,12 +1,15 @@
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import { RouterProvider } from "react-router";
-import { router } from "./Routes/Routes.tsx";
+
 import { Provider } from "react-redux";
+import { RouterProvider } from "react-router";
+
+import { createRoot } from "react-dom/client";
+import { PersistGate } from "redux-persist/integration/react";
+
+import { router } from "./Routes/Routes.tsx";
 import { persistor, store } from "./store/store.ts";
 
-import { PersistGate } from "redux-persist/integration/react";
+import "./index.css";
 
 const container = document.getElementById("root");
 const root = createRoot(container!);

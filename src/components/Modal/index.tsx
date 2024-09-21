@@ -1,5 +1,7 @@
-import { cva, VariantProps } from "class-variance-authority";
 import { Dispatch, HTMLAttributes, ReactNode, SetStateAction } from "react";
+
+import { cva, VariantProps } from "class-variance-authority";
+
 import cn from "../../utils/cn";
 
 export interface ModalProps
@@ -24,7 +26,7 @@ export default function Modal({
     setActive(false);
   };
   return (
-    <div
+    <dialog
       className={
         isActive
           ? "fixed left-0 top-0 z-50 flex h-[100vh] w-[100vw] flex-col items-center justify-center bg-black bg-opacity-[40%]"
@@ -39,7 +41,7 @@ export default function Modal({
       >
         {children}
       </div>
-    </div>
+    </dialog>
   );
 }
 

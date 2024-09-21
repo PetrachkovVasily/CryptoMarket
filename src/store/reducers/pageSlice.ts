@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { HUNDRED } from "../../constants/notes";
 import { currentOffset } from "../../utils/interfaces/cryptoInterfaces";
 

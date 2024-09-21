@@ -1,18 +1,19 @@
-import { useParams } from "react-router";
-import Button from "../components/Button/index.tsx";
-import { cryptoAPI } from "../services/cryptoService.ts";
 import { useEffect, useState } from "react";
-import { coinSlice } from "../store/reducers/CoinSlice.ts";
-import { useAppDispatch, useAppSelector } from "../hooks/redux.ts";
-import Modal from "../components/Modal/index.tsx";
-import { Link } from "react-router-dom";
-import { userSlice } from "../store/reducers/userSlice.ts";
-import { MAX, ZERO } from "../constants/notes.ts";
+
+import { useNavigate, useParams } from "react-router";
+
 import { SLASH } from "../constants/paths.ts";
-import CoinSection from "../components/CoinSection/index.tsx";
+import Modal from "../components/Modal/index.tsx";
+import { MAX, ZERO } from "../constants/notes.ts";
+import Button from "../components/Button/index.tsx";
 import Loader from "../components/Loader/index.tsx";
-import ErrorHeader from "../components/ErrorHeader/index.tsx";
 import AddModal from "../components/AddModal/index.tsx";
+import { cryptoAPI } from "../services/cryptoService.ts";
+import { coinSlice } from "../store/reducers/CoinSlice.ts";
+import { userSlice } from "../store/reducers/userSlice.ts";
+import CoinSection from "../components/CoinSection/index.tsx";
+import ErrorHeader from "../components/ErrorHeader/index.tsx";
+import { useAppDispatch, useAppSelector } from "../hooks/redux.ts";
 
 function CoinPage() {
   const params = useParams();
@@ -20,6 +21,7 @@ function CoinPage() {
   const dispatch = useAppDispatch();
   const coins = useAppSelector((state) => state.coinReducer);
   const [amount, setAmount] = useState<number>(ZERO);
+  const navigate = useNavigate();
 
   const { data: coin, isError } = cryptoAPI.useFetchSingleCoinQuery(params.id);
   const [myError, setMyError] = useState(isError);
@@ -64,8 +66,12 @@ function CoinPage() {
             addToBrief={addToBrief}
           />
         </Modal>
-        <Button className="w-fit px-2 hover:bg-[#A6B0C3]" variant={"tertiary"}>
-          <Link to={SLASH}>Return to main page</Link>
+        <Button
+          onClick={() => navigate(SLASH)}
+          className="w-fit px-2 hover:bg-[#A6B0C3]"
+          variant={"tertiary"}
+        >
+          Return to main page
         </Button>
         {coin ? (
           <CoinSection coin={coin} showModal={showModal} />

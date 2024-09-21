@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router";
+
 import Button from "../Button";
+import TableD from "../TableD";
 import CoinName from "../CoinName";
+import TextHeader from "../TextHeader";
 import { TableRowProps } from "./configs";
+import { ZERO } from "../../constants/notes";
 import { useAppDispatch } from "../../hooks/redux";
 import { coinSlice } from "../../store/reducers/CoinSlice";
-import TableD from "../TableD";
 import { formatValue } from "../../utils/formater/textFormater";
-import TextHeader from "../TextHeader";
-import { ZERO } from "../../constants/notes";
 
 function TableRow({ coin, setModalActive }: TableRowProps) {
   const navigate = useNavigate();

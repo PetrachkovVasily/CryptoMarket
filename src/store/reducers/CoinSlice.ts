@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { cryptoCoin, pageCoins } from "../../utils/interfaces/cryptoInterfaces";
 
 const initialState: pageCoins = {

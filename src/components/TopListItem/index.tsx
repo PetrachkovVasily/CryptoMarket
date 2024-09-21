@@ -1,7 +1,6 @@
+import { TopListProps } from "./config";
 import { SPACE, ZERO } from "../../constants/notes";
 import { formatValue } from "../../utils/formater/textFormater";
-import { TopListProps } from "./config";
-
 function TopListItem({ coin }: TopListProps) {
   return (
     <pre>

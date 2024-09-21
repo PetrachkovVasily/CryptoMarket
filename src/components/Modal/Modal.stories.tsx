@@ -1,6 +1,8 @@
 import { JSX } from "react/jsx-runtime";
-import "../../index.css";
+
 import Modal, { ModalProps } from ".";
+
+import "../../index.css";
 
 export default {
   title: "Modal",

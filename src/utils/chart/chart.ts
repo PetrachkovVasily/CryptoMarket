@@ -1,5 +1,5 @@
 import {
-  VALUE_RANGE,
+  CHART_RANGE,
   DAY,
   DAY_SIZE,
   HOUR_1,
@@ -8,8 +8,8 @@ import {
   HOUR_12_SIZE,
 } from "../../constants/intervals";
 import {
-  coinHistoryListInterface,
   coinHistoryDateInterface,
+  coinHistoryListInterface,
   coinHistoryPriceInterface,
 } from "../interfaces/chartInterfaces";
 
@@ -61,7 +61,7 @@ export const chartGeneration = (
           coin?.data
             .slice(-Number(chartLength))
             .map((item: coinHistoryPriceInterface) => {
-              return Number(item.priceUsd.toString().slice(0, VALUE_RANGE));
+              return Number(item.priceUsd.toString().slice(0, CHART_RANGE));
             }) || [],
       },
     ],
@@ -80,7 +80,7 @@ export const generateParams = (value: string) => {
       return HOUR_12_SIZE;
     }
     default: {
-      return HOUR_1_SIZE;
+      return HOUR_12_SIZE;
     }
   }
 };

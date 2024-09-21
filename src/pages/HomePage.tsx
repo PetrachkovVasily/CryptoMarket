@@ -1,8 +1,9 @@
 import { useState } from "react";
-import HomeSection from "../components/HomeSection/HomeSection";
+
+import { useAppSelector } from "../hooks/redux";
 import MainTable from "../components/MainTable/MainTable";
 import Pagination from "../components/Pagination/Pagination";
-import { useAppSelector } from "../hooks/redux";
+import HomeSection from "../components/HomeSection/HomeSection";
 
 function HomePage() {
   const currentOffset = useAppSelector((state) => state.offsetReducer);

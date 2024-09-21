@@ -1,10 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import {
-  briefCoins,
-  cryptoCoin,
-  myCoin,
-} from "../../utils/interfaces/cryptoInterfaces";
+
 import { ONE } from "../../constants/notes";
+import { briefCoins, cryptoCoin, myCoin } from "../../utils/interfaces/cryptoInterfaces";
 
 const initialState: briefCoins = {
   data: [],

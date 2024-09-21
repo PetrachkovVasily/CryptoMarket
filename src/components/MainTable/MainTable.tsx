@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { cryptoAPI } from "../../services/cryptoService";
-import { coinSlice } from "../../store/reducers/CoinSlice";
-import TableHead from "../TableHead/TableHead";
-import TableRow from "../TableRow/TableRow";
+
 import Modal from "../Modal";
-import Input from "../Input";
-import Button from "../Button";
-import { userSlice } from "../../store/reducers/userSlice";
-import { MainProps } from "./config";
-import TextHeader from "../TextHeader";
-import { HUNDRED, MAX, ZERO } from "../../constants/notes";
 import Loader from "../Loader";
 import AddModal from "../AddModal";
+import { MainProps } from "./config";
+import TableRow from "../TableRow/TableRow";
+import TableHead from "../TableHead/TableHead";
+import { cryptoAPI } from "../../services/cryptoService";
+import { coinSlice } from "../../store/reducers/CoinSlice";
+import { userSlice } from "../../store/reducers/userSlice";
+import { HUNDRED, MAX, ZERO } from "../../constants/notes";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 
 function MainTable({ current }: MainProps) {
   const dispatch = useAppDispatch();

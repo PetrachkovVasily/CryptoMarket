@@ -1,6 +1,8 @@
 import { JSX } from "react/jsx-runtime";
-import "../../index.css";
+
 import TableD, { DivProps } from ".";
+
+import "../../index.css";
 
 export default {
   title: "TableD",
