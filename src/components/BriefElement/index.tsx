@@ -72,19 +72,15 @@ function BriefElement({ coin }: BriefElementProps) {
   };
 
   if (headerDiff.diff > 0) {
-    console.log("Gt");
     headerDiff.color = "green";
     headerDiff.diffString = formatValue(headerDiff.diff);
   } else if (headerDiff.diff < 0) {
-    console.log("Ls");
     headerDiff.color = "red";
     headerDiff.diffString = formatValue(headerDiff.diff);
   } else {
-    console.log("Zero");
     headerDiff.color = "red";
     headerDiff.diffString = "0";
   }
-  console.log(headerDiff);
 
   return (
     <div className="flex items-center justify-between gap-[8px]">
