@@ -5,15 +5,14 @@ import { useEffect, useState } from "react";
 import { coinSlice } from "../store/reducers/CoinSlice.ts";
 import { useAppDispatch, useAppSelector } from "../hooks/redux.ts";
 import Modal from "../components/Modal/index.tsx";
-import Input from "../components/Input/index.tsx";
 import { Link } from "react-router-dom";
 import { userSlice } from "../store/reducers/userSlice.ts";
-import TextHeader from "../components/TextHeader/index.tsx";
 import { MAX, ZERO } from "../constants/notes.ts";
 import { SLASH } from "../constants/paths.ts";
 import CoinSection from "../components/CoinSection/index.tsx";
 import Loader from "../components/Loader/index.tsx";
 import ErrorHeader from "../components/ErrorHeader/index.tsx";
+import AddModal from "../components/AddModal/index.tsx";
 
 function CoinPage() {
   const params = useParams();
@@ -58,21 +57,12 @@ function CoinPage() {
           variant={"add"}
           size={"neutral"}
         >
-          <TextHeader>
-            <h3>Add {coin?.data.name} to briefcase</h3>
-          </TextHeader>
-          <div className="flex items-center">
-            <Input
-              value={amount.toString()}
-              onChange={(e) => setAmount(+e.target.value)}
-              className="h-[42px]"
-              variant={"secondary"}
-              placeholder="Add coin"
-            />
-            <Button onClick={addToBrief} variant={"secondary"}>
-              Add
-            </Button>
-          </div>
+          <AddModal
+            coin={coin?.data.name}
+            amount={amount}
+            setAmount={setAmount}
+            addToBrief={addToBrief}
+          />
         </Modal>
         <Button className="w-fit px-2 hover:bg-[#A6B0C3]" variant={"tertiary"}>
           <Link to={SLASH}>Return to main page</Link>

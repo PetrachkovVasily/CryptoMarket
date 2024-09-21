@@ -12,6 +12,7 @@ import { MainProps } from "./config";
 import TextHeader from "../TextHeader";
 import { HUNDRED, MAX, ZERO } from "../../constants/notes";
 import Loader from "../Loader";
+import AddModal from "../AddModal";
 
 function MainTable({ current }: MainProps) {
   const dispatch = useAppDispatch();
@@ -52,24 +53,12 @@ function MainTable({ current }: MainProps) {
         variant={"add"}
         size={"neutral"}
       >
-        <TextHeader>
-          <h3>Add {coins.currentCoin?.name} to briefcase</h3>
-        </TextHeader>
-        <div className="flex items-center">
-          <Input
-            value={amount.toString()}
-            min={1}
-            max={999}
-            onChange={(e) => setAmount(+e.target.value)}
-            className="h-[42px]"
-            variant={"secondary"}
-            placeholder="Add coin"
-            type="number"
-          />
-          <Button onClick={addToBrief} variant={"secondary"}>
-            Add
-          </Button>
-        </div>
+        <AddModal
+          coin={coins.currentCoin?.name}
+          amount={amount}
+          setAmount={setAmount}
+          addToBrief={addToBrief}
+        />
       </Modal>
       {!isLoading ? (
         <table className="w-[100%] max-w-[1440px] table-auto text-[12px] sm:text-[14px]">

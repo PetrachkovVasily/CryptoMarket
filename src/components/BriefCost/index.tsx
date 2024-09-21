@@ -20,39 +20,53 @@ function BriefCost() {
         newSum += Number(item.priceUsd) * user.data[index].amount;
       }
     });
+
     return { sum: sum, diff: diff, newSum: newSum };
   }
 
   return (
     <pre className="flex gap-2">
-      {formatValue(Number(briefNums.sum))} <span>USD</span>
-      {SPACE}
-      {+briefNums.diff > ZERO ? (
-        <TextHeader colorT={"green"}>
-          {formatValue(Number(briefNums.diff))}
+      {briefNums.sum != ZERO ? (
+        <>
+          {formatValue(Number(briefNums.sum))} <span>USD</span>
           {SPACE}
-          <span>
-            (
-            {formatValue(
-              Number((briefNums.newSum - briefNums.sum) / briefNums.sum),
-            )}
-            {SPACE}
-            %)
-          </span>
-        </TextHeader>
+          {+briefNums.diff > ZERO ? (
+            <TextHeader colorT={"green"}>
+              {formatValue(Number(briefNums.diff))}
+              {SPACE}
+              <span>
+                (
+                {formatValue(
+                  Number((briefNums.newSum - briefNums.sum) / briefNums.sum),
+                )}
+                {SPACE}
+                %)
+              </span>
+            </TextHeader>
+          ) : (
+            <TextHeader colorT={"red"}>
+              {briefNums.sum != ZERO && briefNums.newSum - briefNums.sum != ZERO
+                ? formatValue(Number(briefNums.diff))
+                : ZERO}
+              {SPACE}
+              <span>
+                (
+                {briefNums.sum != ZERO &&
+                briefNums.newSum - briefNums.sum != ZERO
+                  ? formatValue(
+                      Number(
+                        (briefNums.newSum - briefNums.sum) / briefNums.sum,
+                      ),
+                    )
+                  : ZERO}
+                {SPACE}
+                %)
+              </span>
+            </TextHeader>
+          )}
+        </>
       ) : (
-        <TextHeader colorT={"red"}>
-          {formatValue(Number(briefNums.diff))}
-          {SPACE}
-          <span>
-            (
-            {formatValue(
-              Number((briefNums.newSum - briefNums.sum) / briefNums.sum),
-            )}
-            {SPACE}
-            %)
-          </span>
-        </TextHeader>
+        ZERO
       )}
     </pre>
   );

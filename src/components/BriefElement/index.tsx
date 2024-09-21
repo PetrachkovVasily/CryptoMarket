@@ -61,6 +61,27 @@ function BriefElement({ coin }: BriefElementProps) {
     return diff;
   }
 
+  const headerDiff: {
+    diff: number;
+    diffString: string;
+    color: "default" | "green" | "red";
+  } = {
+    diff: calculateBrief(),
+    diffString: "",
+    color: "default",
+  };
+
+  if (headerDiff.diff > ZERO) {
+    headerDiff.color = "green";
+    headerDiff.diffString = formatValue(headerDiff.diff);
+  } else if (headerDiff.diff < ZERO) {
+    headerDiff.color = "red";
+    headerDiff.diffString = formatValue(headerDiff.diff);
+  } else {
+    headerDiff.color = "red";
+    headerDiff.diffString = "0";
+  }
+
   return (
     <div className="flex items-center justify-between gap-[8px]">
       {coin.coin ? (
@@ -71,15 +92,9 @@ function BriefElement({ coin }: BriefElementProps) {
             alt="icon"
           />
           <TextHeader>
-            {calculateBrief() > ZERO ? (
-              <TextHeader colorT={"green"}>
-                {formatValue(calculateBrief())}$
-              </TextHeader>
-            ) : (
-              <TextHeader colorT={"red"}>
-                {formatValue(calculateBrief())}$
-              </TextHeader>
-            )}
+            <TextHeader colorT={headerDiff.color}>
+              {headerDiff.diffString}$
+            </TextHeader>
             <h3>{formatValue(+coin.coin.priceUsd)}$</h3>
           </TextHeader>
           <div className="flex items-center gap-[8px]">
